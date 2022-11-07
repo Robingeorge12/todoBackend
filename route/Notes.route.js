@@ -30,17 +30,17 @@ res.send({msg:"todo created"})
 
 })
  
-noteRouter.put("/edit/:id",authenticate, async (req,res)=>{
+noteRouter.patch("/edit/:id",authenticate, async (req,res)=>{
 
 const {id} = req.params
 //console.log(id)
 
-const data = await TodoData.updateOne({id:id},{$set :{status : true}})
+const data = await TodoData.updateOne({id:id},req.body)
 res.send({msg:data})
 
 })
 
-noteRouter.put("/del/:id",authenticate, async (req,res)=>{
+noteRouter.delete("/del/:id",authenticate, async (req,res)=>{
 
     const {id} = req.params
     //console.log(id)
